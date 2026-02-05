@@ -3,61 +3,34 @@ package com.java.oop;
 public class Main {
     public static void main(String[] args) {
 
-        // ================= CUSTOMER =================
+        Address address1 = new Address(
+                "12A",
+                "MG Road",
+                "Hyderabad",
+                "50033401"
+        );
+
         Customer customer = new Customer(
                 101,
                 "Nayeem",
-                "Hyderabad",
-                "9876543210"
+                address1,
+                "98765420"
         );
 
         System.out.println("----- CUSTOMER DETAILS -----");
         customer.printCustomerDetails();
 
-        System.out.println("Is customer active? " + customer.isActive());
-        System.out.println("Is contact valid? " + customer.isContactNumberValid());
+        Address newAddress = new Address(
+                "45B",
+                "Brigade Road",
+                "Bangalore",
+                "56005641"
+        );
 
-        customer.updateAddress("Bangalore");
+        customer.updateCustomerAddress(newAddress);
         customer.deactivateAccount();
 
         System.out.println("\nAfter updates:");
         customer.printCustomerDetails();
-
-
-        // ================= ORDER =================
-        Order order = new Order(5001, 45000);
-
-        System.out.println("\n----- ORDER DETAILS -----");
-        order.printOrderSummary();
-
-        System.out.println("Total Amount: " + order.calculateTotalAmount());
-        System.out.println("Is order paid? " + order.isPaid());
-
-        order.updateOrderStatus("SHIPPED");
-        order.printOrderSummary();
-
-
-        // ================= PAYMENT =================
-        Payment payment = new Payment();
-
-        System.out.println("\n----- PAYMENT DETAILS -----");
-        payment.initiatePayment(order);
-
-        boolean validAmount = payment.isPaymentAmountValid(45000, order);
-        System.out.println("Is payment amount valid? " + validAmount);
-
-        payment.processPayment("UPI", order);
-
-        System.out.println("Payment Status: " + payment.getPaymentStatus());
-        System.out.println("Is order paid now? " + order.isPaid());
-
-
-        // ================= CANCEL & REFUND =================
-        order.cancelOrder();
-        payment.refundPayment(order);
-
-        System.out.println("\nAfter cancellation:");
-        order.printOrderSummary();
-        System.out.println("Payment Status: " + payment.getPaymentStatus());
     }
 }
